@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "156824941977F3110051072F"
-               BuildableName = "TAH RGB.app"
-               BlueprintName = "TAH RGB"
-               ReferencedContainer = "container:TAH RGB.xcodeproj">
+               BuildableName = "Tah RGB.app"
+               BlueprintName = "Tah RGB"
+               ReferencedContainer = "container:Tah RGB.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "156824B81977F3110051072F"
-               BuildableName = "TAH RGBTests.xctest"
-               BlueprintName = "TAH RGBTests"
-               ReferencedContainer = "container:TAH RGB.xcodeproj">
+               BuildableName = "Tah RGB.temp_caseinsensitive_renameTests.xctest"
+               BlueprintName = "Tah RGB Tests"
+               ReferencedContainer = "container:Tah RGB.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "156824941977F3110051072F"
-            BuildableName = "TAH RGB.app"
-            BlueprintName = "TAH RGB"
-            ReferencedContainer = "container:TAH RGB.xcodeproj">
+            BuildableName = "Tah RGB.app"
+            BlueprintName = "Tah RGB"
+            ReferencedContainer = "container:Tah RGB.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "156824941977F3110051072F"
-            BuildableName = "TAH RGB.app"
-            BlueprintName = "TAH RGB"
-            ReferencedContainer = "container:TAH RGB.xcodeproj">
+            BuildableName = "Tah RGB.app"
+            BlueprintName = "Tah RGB"
+            ReferencedContainer = "container:Tah RGB.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "156824941977F3110051072F"
-            BuildableName = "TAH RGB.app"
-            BlueprintName = "TAH RGB"
-            ReferencedContainer = "container:TAH RGB.xcodeproj">
+            BuildableName = "Tah RGB.app"
+            BlueprintName = "Tah RGB"
+            ReferencedContainer = "container:Tah RGB.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		150C2B3319B9DBDA0003644E /* TAHbleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150C2B3219B9DBDA0003644E /* TAHbleTableController.m */; };
-		150C2B3619B9DBEC0003644E /* TAHble.m in Sources */ = {isa = PBXBuildFile; fileRef = 150C2B3519B9DBEC0003644E /* TAHble.m */; };
+		153AB40F1A6664AC00ECCE05 /* TAHble.m in Sources */ = {isa = PBXBuildFile; fileRef = 153AB40E1A6664AC00ECCE05 /* TAHble.m */; };
+		153AB4121A66650600ECCE05 /* TAHbleTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153AB4111A66650600ECCE05 /* TAHbleTableController.m */; };
 		153E10EE197853DE007F37E4 /* tah.png in Resources */ = {isa = PBXBuildFile; fileRef = 153E10ED197853DE007F37E4 /* tah.png */; };
 		1543E0BF19D96CDF00EF16D1 /* Main_iPhone3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1543E0BE19D96CDF00EF16D1 /* Main_iPhone3.5.storyboard */; };
 		1543E0C119D96F9000EF16D1 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 1543E0C019D96F9000EF16D1 /* home.png */; };
@@ -56,21 +56,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		150C2B3119B9DBDA0003644E /* TAHbleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAHbleTableController.h; sourceTree = "<group>"; };
-		150C2B3219B9DBDA0003644E /* TAHbleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAHbleTableController.m; sourceTree = "<group>"; };
-		150C2B3419B9DBEC0003644E /* TAHble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAHble.h; sourceTree = "<group>"; };
-		150C2B3519B9DBEC0003644E /* TAHble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAHble.m; sourceTree = "<group>"; };
+		153AB40D1A6664AC00ECCE05 /* TAHble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAHble.h; sourceTree = "<group>"; };
+		153AB40E1A6664AC00ECCE05 /* TAHble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAHble.m; sourceTree = "<group>"; };
+		153AB4101A66650600ECCE05 /* TAHbleTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAHbleTableController.h; sourceTree = "<group>"; };
+		153AB4111A66650600ECCE05 /* TAHbleTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAHbleTableController.m; sourceTree = "<group>"; };
 		153E10ED197853DE007F37E4 /* tah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tah.png; sourceTree = "<group>"; };
 		1543E0BE19D96CDF00EF16D1 /* Main_iPhone3.5.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone3.5.storyboard; sourceTree = "<group>"; };
 		1543E0C019D96F9000EF16D1 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
-		156824951977F3110051072F /* TAH RGB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TAH RGB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		156824951977F3110051072F /* Tah RGB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tah RGB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156824981977F3110051072F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1568249A1977F3110051072F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1568249C1977F3110051072F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		156824A01977F3110051072F /* TAH RGB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TAH RGB-Info.plist"; sourceTree = "<group>"; };
+		156824A01977F3110051072F /* Tah RGB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tah RGB-Info.plist"; sourceTree = "<group>"; };
 		156824A21977F3110051072F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		156824A41977F3110051072F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		156824A61977F3110051072F /* TAH RGB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TAH RGB-Prefix.pch"; sourceTree = "<group>"; };
+		156824A61977F3110051072F /* Tah RGB.temp_caseinsensitive_rename-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tah RGB.temp_caseinsensitive_rename-Prefix.pch"; sourceTree = "<group>"; };
 		156824A71977F3110051072F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		156824A81977F3110051072F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		156824AB1977F3110051072F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -78,9 +78,9 @@
 		156824B01977F3110051072F /* RGBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RGBViewController.h; path = "TAH RGB/RGBViewController.h"; sourceTree = "<group>"; };
 		156824B11977F3110051072F /* RGBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RGBViewController.m; path = "TAH RGB/RGBViewController.m"; sourceTree = "<group>"; };
 		156824B31977F3110051072F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		156824B91977F3110051072F /* TAH RGBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TAH RGBTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		156824B91977F3110051072F /* Tah RGB.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tah RGB.temp_caseinsensitive_renameTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156824BA1977F3110051072F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		156824C21977F3110051072F /* TAH RGBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TAH RGBTests-Info.plist"; sourceTree = "<group>"; };
+		156824C21977F3110051072F /* Tah RGB.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tah RGB.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = "<group>"; };
 		156824C41977F3110051072F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		156824C61977F3110051072F /* TAH_RGBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAH_RGBTests.m; sourceTree = "<group>"; };
 		1598785819D47E7100B2E81A /* rgb bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rgb bg.png"; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		153E10E119784832007F37E4 /* TAH ble Table View */ = {
 			isa = PBXGroup;
 			children = (
-				150C2B3119B9DBDA0003644E /* TAHbleTableController.h */,
-				150C2B3219B9DBDA0003644E /* TAHbleTableController.m */,
+				153AB4101A66650600ECCE05 /* TAHbleTableController.h */,
+				153AB4111A66650600ECCE05 /* TAHbleTableController.m */,
 			);
 			name = "TAH ble Table View";
 			sourceTree = "<group>";
@@ -142,8 +142,8 @@
 		153E10E519784856007F37E4 /* TAH Library */ = {
 			isa = PBXGroup;
 			children = (
-				150C2B3419B9DBEC0003644E /* TAHble.h */,
-				150C2B3519B9DBEC0003644E /* TAHble.m */,
+				153AB40D1A6664AC00ECCE05 /* TAHble.h */,
+				153AB40E1A6664AC00ECCE05 /* TAHble.m */,
 			);
 			name = "TAH Library";
 			sourceTree = "<group>";
@@ -168,8 +168,8 @@
 		156824961977F3110051072F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				156824951977F3110051072F /* TAH RGB.app */,
-				156824B91977F3110051072F /* TAH RGBTests.xctest */,
+				156824951977F3110051072F /* Tah RGB.app */,
+				156824B91977F3110051072F /* Tah RGB.temp_caseinsensitive_renameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,10 +217,10 @@
 				1598786E19D4880000B2E81A /* frame.png */,
 				1598785819D47E7100B2E81A /* rgb bg.png */,
 				153E10ED197853DE007F37E4 /* tah.png */,
-				156824A01977F3110051072F /* TAH RGB-Info.plist */,
+				156824A01977F3110051072F /* Tah RGB-Info.plist */,
 				156824A11977F3110051072F /* InfoPlist.strings */,
 				156824A41977F3110051072F /* main.m */,
-				156824A61977F3110051072F /* TAH RGB-Prefix.pch */,
+				156824A61977F3110051072F /* Tah RGB.temp_caseinsensitive_rename-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 		156824C11977F3110051072F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				156824C21977F3110051072F /* TAH RGBTests-Info.plist */,
+				156824C21977F3110051072F /* Tah RGB.temp_caseinsensitive_renameTests-Info.plist */,
 				156824C31977F3110051072F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -291,9 +291,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		156824941977F3110051072F /* TAH RGB */ = {
+		156824941977F3110051072F /* Tah RGB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 156824CA1977F3110051072F /* Build configuration list for PBXNativeTarget "TAH RGB" */;
+			buildConfigurationList = 156824CA1977F3110051072F /* Build configuration list for PBXNativeTarget "Tah RGB" */;
 			buildPhases = (
 				156824911977F3110051072F /* Sources */,
 				156824921977F3110051072F /* Frameworks */,
@@ -303,14 +303,14 @@
 			);
 			dependencies = (
 			);
-			name = "TAH RGB";
+			name = "Tah RGB";
 			productName = "TAH RGB";
-			productReference = 156824951977F3110051072F /* TAH RGB.app */;
+			productReference = 156824951977F3110051072F /* Tah RGB.app */;
 			productType = "com.apple.product-type.application";
 		};
-		156824B81977F3110051072F /* TAH RGBTests */ = {
+		156824B81977F3110051072F /* Tah RGB Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 156824CD1977F3110051072F /* Build configuration list for PBXNativeTarget "TAH RGBTests" */;
+			buildConfigurationList = 156824CD1977F3110051072F /* Build configuration list for PBXNativeTarget "Tah RGB Tests" */;
 			buildPhases = (
 				156824B51977F3110051072F /* Sources */,
 				156824B61977F3110051072F /* Frameworks */,
@@ -321,9 +321,9 @@
 			dependencies = (
 				156824BF1977F3110051072F /* PBXTargetDependency */,
 			);
-			name = "TAH RGBTests";
+			name = "Tah RGB Tests";
 			productName = "TAH RGBTests";
-			productReference = 156824B91977F3110051072F /* TAH RGBTests.xctest */;
+			productReference = 156824B91977F3110051072F /* Tah RGB.temp_caseinsensitive_renameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -335,12 +335,15 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = dhirajjadhao;
 				TargetAttributes = {
+					156824941977F3110051072F = {
+						DevelopmentTeam = JFJ7QVPY27;
+					};
 					156824B81977F3110051072F = {
 						TestTargetID = 156824941977F3110051072F;
 					};
 				};
 			};
-			buildConfigurationList = 156824901977F3110051072F /* Build configuration list for PBXProject "TAH RGB" */;
+			buildConfigurationList = 156824901977F3110051072F /* Build configuration list for PBXProject "Tah RGB" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -353,8 +356,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				156824941977F3110051072F /* TAH RGB */,
-				156824B81977F3110051072F /* TAH RGBTests */,
+				156824941977F3110051072F /* Tah RGB */,
+				156824B81977F3110051072F /* Tah RGB Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -402,12 +405,12 @@
 			files = (
 				156824B21977F3110051072F /* RGBViewController.m in Sources */,
 				156824A91977F3110051072F /* AppDelegate.m in Sources */,
-				150C2B3619B9DBEC0003644E /* TAHble.m in Sources */,
+				153AB4121A66650600ECCE05 /* TAHbleTableController.m in Sources */,
 				1598786A19D4866000B2E81A /* SocialViewController.m in Sources */,
 				1598786719D4865800B2E81A /* SettingsViewController.m in Sources */,
-				150C2B3319B9DBDA0003644E /* TAHbleTableController.m in Sources */,
 				1598786119D485FE00B2E81A /* CustomCell.m in Sources */,
 				156824A51977F3110051072F /* main.m in Sources */,
+				153AB40F1A6664AC00ECCE05 /* TAHble.m in Sources */,
 				1598785C19D47FFD00B2E81A /* HomeViewController.m in Sources */,
 				1598786D19D4866A00B2E81A /* MediaViewController.m in Sources */,
 			);
@@ -426,7 +429,7 @@
 /* Begin PBXTargetDependency section */
 		156824BF1977F3110051072F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 156824941977F3110051072F /* TAH RGB */;
+			target = 156824941977F3110051072F /* Tah RGB */;
 			targetProxy = 156824BE1977F3110051072F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -544,10 +547,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TAH RGB/TAH RGB-Prefix.pch";
-				INFOPLIST_FILE = "TAH RGB/TAH RGB-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TAH RGB/Tah RGB.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/TAH RGB/Tah RGB-Info.plist";
+				PRODUCT_NAME = "Tah RGB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -557,10 +561,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TAH RGB/TAH RGB-Prefix.pch";
-				INFOPLIST_FILE = "TAH RGB/TAH RGB-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TAH RGB/Tah RGB.temp_caseinsensitive_rename-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/TAH RGB/Tah RGB-Info.plist";
+				PRODUCT_NAME = "Tah RGB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -580,8 +585,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "TAH RGBTests/TAH RGBTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "TAH RGBTests/Tah RGB.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = "Tah RGB.temp_caseinsensitive_renameTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -598,8 +603,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TAH RGB/TAH RGB-Prefix.pch";
-				INFOPLIST_FILE = "TAH RGBTests/TAH RGBTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "TAH RGBTests/Tah RGB.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = "Tah RGB.temp_caseinsensitive_renameTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -608,7 +613,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		156824901977F3110051072F /* Build configuration list for PBXProject "TAH RGB" */ = {
+		156824901977F3110051072F /* Build configuration list for PBXProject "Tah RGB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				156824C81977F3110051072F /* Debug */,
@@ -617,7 +622,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		156824CA1977F3110051072F /* Build configuration list for PBXNativeTarget "TAH RGB" */ = {
+		156824CA1977F3110051072F /* Build configuration list for PBXNativeTarget "Tah RGB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				156824CB1977F3110051072F /* Debug */,
@@ -626,7 +631,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		156824CD1977F3110051072F /* Build configuration list for PBXNativeTarget "TAH RGBTests" */ = {
+		156824CD1977F3110051072F /* Build configuration list for PBXNativeTarget "Tah RGB Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				156824CE1977F3110051072F /* Debug */,

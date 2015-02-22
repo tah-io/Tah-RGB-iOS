@@ -1,7 +1,7 @@
 //
 //  TAHble.m
 //  Created by Dhiraj Jadhao on 9/06/2014.
-//  Copyright (c) 2012 www.tah.io
+//  Copyright (c) 2014 www.tah.io
 //  All rights reserved.
 
 
@@ -21,7 +21,7 @@
  *
  *  @param s Uint16 value to byteswap
  *
- *  @discussion swap byteswaps a UInt16 
+ *  @discussion swap byteswaps a UInt16
  *
  *  @return Byteswapped UInt16
  */
@@ -82,9 +82,9 @@
 /*
  *  @method printPeripheralInfo:
  *
- *  @param peripheral Peripheral to print info of 
+ *  @param peripheral Peripheral to print info of
  *
- *  @discussion printPeripheralInfo prints detailed info about peripheral 
+ *  @discussion printPeripheralInfo prints detailed info about peripheral
  *
  */
 - (void) printPeripheralInfo:(CBPeripheral*)peripheral {
@@ -145,7 +145,7 @@
 {
     printf("begin reading\n");
     //[peripheral readValueForCharacteristic:dataRecvrCharacteristic];
-    printf("now can reading......\n");
+    printf("now reading......\n");
 }
 
 
@@ -169,14 +169,16 @@
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    printf("Now we found device\n");
-    if (!peripherals) {
+    printf("New Device Found\n");
+    if (!peripherals)
+    {
         peripherals = [[NSMutableArray alloc] initWithObjects:peripheral, nil];
         for (int i = 0; i < [peripherals count]; i++) {
             [delegate peripheralFound: peripheral];
         }
     }
     
+    else
     {
         if((__bridge CFUUIDRef )peripheral.identifier == NULL) return;
         //if(peripheral.name == NULL) return;
@@ -191,17 +193,16 @@
             if (memcmp(&b1, &b2, 16) == 0) {
                 // these are the same, and replace the old peripheral information
                 [peripherals replaceObjectAtIndex:i withObject:peripheral];
-                printf("Duplicated peripheral is found...\n");
+                printf("Known Device Found...\n");
                 //[delegate peripheralFound: peripheral];
                 return;
             }
         }
-        printf("New peripheral is found...\n");
+        printf("New Device Found\n");
         [peripherals addObject:peripheral];
         [delegate peripheralFound:peripheral];
         return;
     }
-    printf("%s\n", __FUNCTION__);
 }
 
 
@@ -216,24 +217,24 @@
     
     [self printPeripheralInfo:peripheral];
     
-    printf("connected to the active peripheral\n");
+    printf("Connected to active peripheral Device\n");
 }
 
 
 
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    printf("disconnected to the active peripheral\n");
+    printf("Disconnected from the active peripheral Device\n");
     if(activePeripheral != nil)
-    [delegate setDisconnect];
-     activePeripheral = nil;
+        [delegate setDisconnect];
+    activePeripheral = nil;
 }
 
 
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"failed to connect to peripheral %@: %@\n", [peripheral name], [error localizedDescription]);
+    NSLog(@"Failed to connect active peripheral %@: %@\n", [peripheral name], [error localizedDescription]);
 }
 
 
@@ -249,7 +250,7 @@
         return;
     }
     [delegate TAHbleCharValueUpdated:@"FFE1" value:characteristic.value];
-
+    
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -303,7 +304,7 @@
  *  @param peripheral Pheripheral that got updated
  *  @error error Error message if something went wrong
  *
- *  @discussion didDiscoverServices is called when CoreBluetooth has discovered services on a 
+ *  @discussion didDiscoverServices is called when CoreBluetooth has discovered services on a
  *  peripheral after the discoverServices routine has been called on the peripheral
  *
  */
@@ -327,7 +328,7 @@
  *  @param service Service that characteristics where found on
  *  @error error Error message if something went wrong
  *
- *  @discussion didDiscoverCharacteristicsForService is called when CoreBluetooth has discovered 
+ *  @discussion didDiscoverCharacteristicsForService is called when CoreBluetooth has discovered
  *  characteristics on a service, on a peripheral after the discoverCharacteristics routine has been called on the service
  *
  */
@@ -336,7 +337,7 @@
     if (!error) {
         printf("Characteristics of service with UUID : %s found\r\n",[self CBUUIDToString:service.UUID]);
         for(int i = 0; i < service.characteristics.count; i++) { //Show every one
-            CBCharacteristic *c = [service.characteristics objectAtIndex:i]; 
+            CBCharacteristic *c = [service.characteristics objectAtIndex:i];
             printf("Found characteristic %s\r\n",[ self CBUUIDToString:c.UUID]);
         }
         
@@ -405,7 +406,7 @@
 -(const char *) UUIDToString:(CFUUIDRef)UUID {
     if (!UUID) return "NULL";
     CFStringRef s = CFUUIDCreateString(NULL, UUID);
-    return CFStringGetCStringPtr(s, 0);		
+    return CFStringGetCStringPtr(s, 0);
     
 }
 
@@ -443,7 +444,7 @@
  *
  *  @return pointer to CBService if found, nil if not
  *
- *  @discussion findServiceFromUUID searches through the services list of a peripheral to find a 
+ *  @discussion findServiceFromUUID searches through the services list of a peripheral to find a
  *  service with a specific UUID
  *
  */
@@ -465,7 +466,7 @@
  *
  *  @return pointer to CBCharacteristic if found, nil if not
  *
- *  @discussion findCharacteristicFromUUID searches through the characteristic list of a given service 
+ *  @discussion findCharacteristicFromUUID searches through the characteristic list of a given service
  *  to find a characteristic with a specific UUID
  *
  */
@@ -526,7 +527,7 @@
  *
  *  @discussion Main routine for writeValue request, writes without feedback. It converts integer into
  *  CBUUID's used by CoreBluetooth. It then searches through the peripherals services to find a
- *  suitable service, it then checks that there is a suitable characteristic on this service. 
+ *  suitable service, it then checks that there is a suitable characteristic on this service.
  *  If this is found, value is written. If not nothing is done.
  *
  */
@@ -570,15 +571,15 @@
  *
  *  @discussion Main routine for read value request. It converts integers into
  *  CBUUID's used by CoreBluetooth. It then searches through the peripherals services to find a
- *  suitable service, it then checks that there is a suitable characteristic on this service. 
- *  If this is found, the read value is started. When value is read the didUpdateValueForCharacteristic 
+ *  suitable service, it then checks that there is a suitable characteristic on this service.
+ *  If this is found, the read value is started. When value is read the didUpdateValueForCharacteristic
  *  routine is called.
  *
  *  @see didUpdateValueForCharacteristic
  */
 
 -(void) readValue: (int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p {
-    printf("In read Value");
+    printf("Reading Value..");
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
     NSData *sd = [[NSData alloc] initWithBytes:(char *)&s length:2];
@@ -594,741 +595,103 @@
     if (!characteristic) {
         printf("Could not find characteristic with UUID %s on service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:cu],[self CBUUIDToString:su],[self UUIDToString:(__bridge CFUUIDRef )p.identifier]);
         return;
-    }  
+    }
     [p readValueForCharacteristic:characteristic];
     
-   
+    
 }
 
 
 //////////////////////////////////// TAH Pin Controls /////////////////////////////////
 
-        ////////////////// TAH Pins Digital Value control ///////////////////
+////////////////// TAH Pins Digital Value control ///////////////////
 
 
-/////// Pin 2 Control
-
--(void) TAHPin2digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
+-(void) TAHdigitalWrite:(CBPeripheral *)peripheral PinNumber:(int)Pin Value:(int)Value
 {
+    NSString *str1 = @"0,";
+    NSString *str2 = [NSString stringWithFormat:@"%d",Pin];
+    NSString *str3 = [NSString stringWithFormat:@"%@%d%@",@",",Value,@"R"];
     
-    if (state)
-    {
-        NSData *data = [@"0,2,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 2 On");
-    }
+    NSString *dataString = [NSString stringWithFormat:@"%@%@%@",str1,str2,str3];
     
-    else
-    {
-        NSData *data = [@"0,2,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 2 off");
-    }
+    
+    NSData *data = [dataString dataUsingEncoding:[NSString defaultCStringEncoding]];
+    
+    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    
     
 }
 
-
-
-/////// Pin 3 Control
-
-
--(void) TAHPin3digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,3,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 3 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,3,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 3 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 4 Control
-
--(void) TAHPin4digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,4,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 4 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,4,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 4 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 5 Control
-
--(void) TAHPin5digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,5,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 5 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,5,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 5 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 6 Control
-
--(void) TAHPin6digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,6,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 6 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,6,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 6 off");
-    }
-    
-}
-
-
-
-/////// Pin 7 Control
-
--(void) TAHPin7digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,7,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 7 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,7,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 7 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 8 Control
-
--(void) TAHPin8digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,8,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 8 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,8,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 8 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 9 Control
-
--(void) TAHPin9digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,9,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 9 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,9,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 9 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 10 Control
-
--(void) TAHPin10digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,10,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 10 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,10,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 10 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 11 Control
-
--(void) TAHPin11digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,11,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 11 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,11,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 11 off");
-    }
-    
-}
-
-
-
-
-/////// Pin 12 Control
-
--(void) TAHPin12digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-    
-    if (state)
-    {
-        NSData *data = [@"0,12,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 12 On");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,12,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        //NSLog(@"TAH Pin 12 off");
-    }
-    
-}
-
-
-
-/////// Pin 13 Control
-
-
--(void) TAHPin13digitalWrite:(CBPeripheral *)peripheral HIGH:(BOOL)state
-{
-   
-    if (state)
-    {
-        NSData *data = [@"0,13,1R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-         NSLog(@"TAH Pin 13 on");
-    }
-    
-    else
-    {
-        NSData *data = [@"0,13,0R" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-        NSLog(@"TAH Pin 13 off");
-    }
-
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////// TAH Pins Analog Value control ////////////////////////////
 
-/////// Pin 3 Control
-
--(void) TAHPin3analogWrite:(CBPeripheral *)peripheral Value:(int)state;
+-(void) TAHanalogWrite:(CBPeripheral *)peripheral PinNumber:(int)Pin Value:(int)Value
 {
+    NSString *str1 = @"1,";
+    NSString *str2 = [NSString stringWithFormat:@"%d",Pin];
+    NSString *str3 = [NSString stringWithFormat:@"%@%d%@",@",",Value,@"R"];
     
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
+    NSString *dataString = [NSString stringWithFormat:@"%@%@%@",str1,str2,str3];
     
-    PinType = @"1";
-    PinNumber = @"3";
-    seperator = @",";
-    end = @"R";
     
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
+    NSData *data = [dataString dataUsingEncoding:[NSString defaultCStringEncoding]];
     
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-   
-    
 }
 
-
-
-/////// Pin 5 Control
-
--(void) TAHPin5analogWrite:(CBPeripheral *)peripheral Value:(int)state;
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"1";
-    PinNumber = @"5";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-    
-    
-}
-
-
-/////// Pin 6 Control
-
--(void) TAHPin6analogWrite:(CBPeripheral *)peripheral Value:(int)state;
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"1";
-    PinNumber = @"6";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-    
-    
-}
-
-
-
-/////// Pin 9 Control
-
--(void) TAHPin9analogWrite:(CBPeripheral *)peripheral Value:(int)state;
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"1";
-    PinNumber = @"9";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-    
-    
-}
-
-
-
-/////// Pin 10 Control
-
--(void) TAHPin10analogWrite:(CBPeripheral *)peripheral Value:(int)state;
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"1";
-    PinNumber = @"10";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-    
-    
-}
-
-
-
-/////// Pin 11 Control
-
--(void) TAHPin11analogWrite:(CBPeripheral *)peripheral Value:(int)state;
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"1";
-    PinNumber = @"11";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-    
-    
-}
-
-
-
-/////// Pin 13 Control
-
--(void) TAHPin13analogWrite:(CBPeripheral *)peripheral Value:(int)state;
-{
-
-        NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-        PinType = @"1";
-        PinNumber = @"13";
-        seperator = @",";
-        end = @"R";
-    
-        command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,state,end];
-    
-        NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-        
-   
-
-}
 
 
 
 //////////////////////  TAH PWM Servo control pins //////////////////////
 
 
-/////// Pin 3 Control
-
--(void) TAHPin3Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
+-(void) TAHservoWrite:(CBPeripheral *)peripheral PinNumber:(int)Pin Angle:(int)Angle
 {
     
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
+    NSString *str1 = @"2,";
+    NSString *str2 = [NSString stringWithFormat:@"%d",Pin];
+    NSString *str3 = [NSString stringWithFormat:@"%@%d%@",@",",Angle,@"R"];
     
-    PinType = @"2";
-    PinNumber = @"3";
-    seperator = @",";
-    end = @"R";
+    NSString *dataString = [NSString stringWithFormat:@"%@%@%@",str1,str2,str3];
     
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
     
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-
-}
-
-
-
-/////// Pin 5 Control
-
--(void) TAHPin5Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"2";
-    PinNumber = @"5";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
+    NSData *data = [dataString dataUsingEncoding:[NSString defaultCStringEncoding]];
     
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     
 }
-
-
-
-/////// Pin 6 Control
-
--(void) TAHPin6Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"2";
-    PinNumber = @"6";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-}
-
-
-
-/////// Pin 9 Control
-
--(void) TAHPin9Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"2";
-    PinNumber = @"9";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-}
-
-
-
-/////// Pin 10 Control
-
--(void) TAHPin10Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"2";
-    PinNumber = @"10";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-}
-
-
-
-/////// Pin 11 Control
-
--(void) TAHPin11Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"2";
-    PinNumber = @"11";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-}
-
-
-
-/////// Pin 13 Control
-
--(void) TAHPin13Servo:(CBPeripheral *)peripheral angle:(int)angle;
-
-{
-    
-    NSString *command,*PinType,*PinNumber,*end,*seperator;
-    
-    PinType = @"2";
-    PinNumber = @"13";
-    seperator = @",";
-    end = @"R";
-    
-    command = [NSString stringWithFormat:@"%@%@%@%@%d%@",PinType,seperator,PinNumber,seperator,angle,end];
-    
-    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    
-}
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////
 
 
 
 /////////// TAH Keyboard and Mouse Control //////////
 
--(void) TAHKeyboardUpArrowKey:(CBPeripheral *)peripheral Pressed:(BOOL)Pressed
+
+
+
+-(void) TAHkeyPress:(CBPeripheral *)peripheral Press:(int)key
 {
-    if (Pressed)
-    {
-        NSData *data = [@"0,0,0,256M" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    }
-
-
+    
+    NSString *string1 = @"0,0,0,";
+    NSString *end = @"M";
+    NSString *command = [NSString stringWithFormat:@"%@%d%@",string1,key,end];
+    
+    NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
+    
+    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
 }
 
 
--(void) TAHKeyboardDownArrowKey:(CBPeripheral *)peripheral Pressed:(BOOL)Pressed
+
+
+
+-(void) TAHMouseMove:(CBPeripheral *)peripheral Xaxis:(float)Xaxis Yaxis:(float)Yaxis Scroll:(float)Scroll
 {
-    if (Pressed)
-    {
-        NSData *data = [@"0,0,0,257M" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    }
-}
-
-
--(void) TAHKeyboardRightArrowKey:(CBPeripheral *)peripheral Pressed:(BOOL)Pressed
-{
-    if (Pressed)
-    {
-        NSData *data = [@"0,0,0,258M" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    }
-}
-
-
--(void) TAHKeyboardLeftArrowKey:(CBPeripheral *)peripheral Pressed:(BOOL)Pressed
-{
-    if (Pressed)
-    {
-        NSData *data = [@"0,0,0,259M" dataUsingEncoding:[NSString defaultCStringEncoding]];
-        
-        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-    }
-}
-
-
--(void) TAHMosueMove:(CBPeripheral *)peripheral X:(float)Xaxis Y:(float)Yaxis Scroll:(float)Scroll
-{
-
+    
     NSString *command,*mouseX,*mouseY,*scroll,*keypress,*end,*seperator;
     
     mouseX = [NSString stringWithFormat:@"%.0f",Xaxis];
@@ -1341,49 +704,50 @@
     command = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@",mouseX,seperator,mouseY,seperator,scroll,seperator,keypress,end];
     
     NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
-
+    
     
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     
 }
 
 
--(void) TAHTrackPad:(CBPeripheral *)peripheral SwipeUp:(BOOL)SwipeUp
+
+
+
+-(void) TAHTrackPad:(CBPeripheral *)peripheral Swipe:(int)Swipe
 {
-    if (SwipeUp)
+    if (Swipe == Up)
     {
-        NSData *data = [@"0,0,0,260M" dataUsingEncoding:[NSString defaultCStringEncoding]];
+        NSData *data = [@"0,0,0,256M" dataUsingEncoding:[NSString defaultCStringEncoding]];
         
         [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
-}
--(void) TAHTrackPad:(CBPeripheral *)peripheral SwipeDown:(BOOL)SwipeDown
-{
-    if (SwipeDown)
+    
+    else if (Swipe == Down)
     {
-        NSData *data = [@"0,0,0,261M" dataUsingEncoding:[NSString defaultCStringEncoding]];
+        NSData *data = [@"0,0,0,257M" dataUsingEncoding:[NSString defaultCStringEncoding]];
         
         [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
-}
--(void) TAHTrackPad:(CBPeripheral *)peripheral SwipeRight:(BOOL)SwipeRight
-{
-    if (SwipeRight)
+    
+    
+    else if (Swipe == Right)
     {
-        NSData *data = [@"0,0,0,262M" dataUsingEncoding:[NSString defaultCStringEncoding]];
+        NSData *data = [@"0,0,0,258M" dataUsingEncoding:[NSString defaultCStringEncoding]];
         
         [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
-}
--(void) TAHTrackPad:(CBPeripheral *)peripheral SwipeLeft:(BOOL)SwipeLeft
-{
-    if (SwipeLeft)
+    
+    
+    else if (Swipe == Left)
     {
-        NSData *data = [@"0,0,0,263M" dataUsingEncoding:[NSString defaultCStringEncoding]];
+        NSData *data = [@"0,0,0,259M" dataUsingEncoding:[NSString defaultCStringEncoding]];
         
         [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
+    
 }
+
 
 
 //////////////////////////////////////////////////////
@@ -1394,9 +758,9 @@
 // Parameters which are altered takes effect only after Reboot
 
 // Resets TAH
--(void)resetTAH:(CBPeripheral *)peripheral
+-(void)updateSettings:(CBPeripheral *)peripheral
 {
-
+    
     NSData *data = [@"AT+RESET" dataUsingEncoding:[NSString defaultCStringEncoding]];
     
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
@@ -1438,7 +802,7 @@
     NSData *data = [@"AT+BAUD?" dataUsingEncoding:[NSString defaultCStringEncoding]];
     
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-  
+    
 }
 
 // Get TAH Characteristics Value
@@ -1471,7 +835,6 @@
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
 }
 
-
 // Get TAH Beacon UUID 1
 
 -(void)getTAHBeaconUUID1:(CBPeripheral *)peripheral
@@ -1502,6 +865,81 @@
 }
 
 
+-(void)setTAHBeaconUUID0:(CBPeripheral *)peripheral UUID0:(char)UUID0
+{
+    if (UUID0 >=7)
+    {
+        NSString *str1 = @"AT+IBE0";
+        NSString *str2 = [NSString stringWithFormat:@"%hhd", UUID0];
+        
+        NSString *str3 = [NSString stringWithFormat:@"%@%@", str1,str2];
+        
+        NSData *data = [str3 dataUsingEncoding:[NSString defaultCStringEncoding]];
+        
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    }
+    
+}
+
+
+
+-(void)setTAHBeaconUUID1:(CBPeripheral *)peripheral UUID1:(char)UUID1
+{
+    if (UUID1 >=7)
+    {
+        NSString *str1 = @"AT+IBE1";
+        NSString *str2 = [NSString stringWithFormat:@"%hhd", UUID1];
+        
+        NSString *str3 = [NSString stringWithFormat:@"%@%@", str1,str2];
+        
+        NSData *data = [str3 dataUsingEncoding:[NSString defaultCStringEncoding]];
+        
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    }
+    
+}
+
+
+
+-(void)setTAHBeaconUUID2:(CBPeripheral *)peripheral UUID2:(char)UUID2
+{
+    if (UUID2 >=7)
+    {
+        NSString *str1 = @"AT+IBE2";
+        NSString *str2 = [NSString stringWithFormat:@"%hhd", UUID2];
+        
+        NSString *str3 = [NSString stringWithFormat:@"%@%@", str1,str2];
+        
+        NSData *data = [str3 dataUsingEncoding:[NSString defaultCStringEncoding]];
+        
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    }
+    
+}
+
+
+
+
+-(void)setTAHBeaconUUID3:(CBPeripheral *)peripheral UUID3:(char)UUID3
+{
+    if (UUID3 >=7)
+    {
+        NSString *str1 = @"AT+IBE3";
+        NSString *str2 = [NSString stringWithFormat:@"%hhd", UUID3];
+        
+        NSString *str3 = [NSString stringWithFormat:@"%@%@", str1,str2];
+        
+        NSData *data = [str3 dataUsingEncoding:[NSString defaultCStringEncoding]];
+        
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    }
+    
+}
+
+
+
+
+
 // Get TAH Beacon Major Value
 
 -(void)getTAHBeaconMajor:(CBPeripheral *)peripheral
@@ -1520,6 +958,43 @@
     
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
 }
+
+
+
+
+-(void)setTAHBeaconMajor:(CBPeripheral *)peripheral Major:(char)Major
+{
+    if (Major >=3)
+    {
+        NSString *str1 = @"AT+MARJ0x";
+        NSString *str2 = [NSString stringWithFormat:@"%hhd", Major];
+        
+        NSString *str3 = [NSString stringWithFormat:@"%@%@", str1,str2];
+        
+        NSData *data = [str3 dataUsingEncoding:[NSString defaultCStringEncoding]];
+        
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    }
+}
+
+
+-(void)setTAHBeaconMinor:(CBPeripheral *)peripheral Minor:(char)Minor
+{
+    if (Minor >=3)
+    {
+        NSString *str1 = @"AT+MINO0x";
+        NSString *str2 = [NSString stringWithFormat:@"%hhd", Minor];
+        
+        NSString *str3 = [NSString stringWithFormat:@"%@%@", str1,str2];
+        
+        NSData *data = [str3 dataUsingEncoding:[NSString defaultCStringEncoding]];
+        
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+    }
+}
+
+
+
 
 
 // Get TAH Working Mode
@@ -1592,14 +1067,6 @@
 }
 
 
-// Get TAH Device Role
-
--(void)getTAHDeviceRole:(CBPeripheral *)peripheral
-{
-    NSData *data = [@"AT+ROLE?" dataUsingEncoding:[NSString defaultCStringEncoding]];
-    
-    [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-}
 
 
 // Get TAH RSSI Value
@@ -1692,7 +1159,7 @@
     {
         data = [@"AT+ADVI8" dataUsingEncoding:[NSString defaultCStringEncoding]];
     }
-
+    
     
     else if (interval ==  9000)
     {
@@ -1785,14 +1252,14 @@
 
 -(void)setTAHWorkingMode:(CBPeripheral *)peripheral TransmissionMode:(BOOL)mode
 {
-   
+    
     if(mode)
     {
-      NSData *data = [@"AT+MODE0" dataUsingEncoding:[NSString defaultCStringEncoding]];
-     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
+        NSData *data = [@"AT+MODE0" dataUsingEncoding:[NSString defaultCStringEncoding]];
+        [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
 }
-    
+
 
 
 // Set TAH in GPIO Collection Mode
@@ -1804,7 +1271,7 @@
         NSData *data = [@"AT+MODE1" dataUsingEncoding:[NSString defaultCStringEncoding]];
         [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
-
+    
 }
 
 
@@ -1817,7 +1284,7 @@
         NSData *data = [@"AT+MODE2" dataUsingEncoding:[NSString defaultCStringEncoding]];
         [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     }
-
+    
 }
 
 
@@ -1834,7 +1301,7 @@
     [data appendData:AT];
     [data appendData:DeviceName];
     
-   
+    
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
 }
 
@@ -1857,28 +1324,28 @@
 
 // Set TAH Transmission Power
 
--(void)setTAHTransmissionPower:(CBPeripheral *)peripheral Power:(int)Power
+-(void)setTAHTransmissionPower:(CBPeripheral *)peripheral Power:(NSString *)Power
 {
     NSString *power;
     
-    if (Power == -23)
+    if ([Power  isEqual: @"-23"])
     {
-      power = @"0";
+        power = @"0";
     }
     
-    else if (Power == -6)
+    else if ([Power  isEqual: @"-6"])
     {
-      power = @"1";
+        power = @"1";
     }
     
-    else if (Power == 0)
+    else if ([Power  isEqual: @"0"])
     {
-      power = @"2";
+        power = @"2";
     }
     
-    else if (Power == 6)
+    else if ([Power  isEqual: @"6"])
     {
-      power = @"3";
+        power = @"3";
     }
     
     NSData *AT = [@"AT+POWE" dataUsingEncoding:[NSString defaultCStringEncoding]];
@@ -1981,7 +1448,7 @@
     
     NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
-
+    
 }
 
 
@@ -1989,7 +1456,7 @@
 
 -(void) getTAHTemperatureSensorUpdate:(CBPeripheral *)peripheral AnalogPin:(int)SensorPin
 {
-     NSString *SensorType,*seperator,*end, *command;
+    NSString *SensorType,*seperator,*end, *command;
     
     
     if (SensorPin == 0)
@@ -2021,8 +1488,8 @@
     {
         SensorPin = 415;
     }
-
-   
+    
+    
     SensorType = @"1";
     seperator = @",";
     end = @"S";
@@ -2032,7 +1499,7 @@
     NSData *data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
     [self writeValue:SERVICE_UUID characteristicUUID:CHAR_UUID p:peripheral data:data];
     NSLog(@"Temperature Sensor Value Updated");
-
+    
 }
 
 
@@ -2204,7 +1671,7 @@
 -(void) getTAHPIRMotionSensorUpdate:(CBPeripheral *)peripheral SensorPin:(int)SensorPin
 {
     NSString *SensorType,*seperator,*end, *command;
-
+    
     SensorType = @"6";
     seperator = @",";
     end = @"S";

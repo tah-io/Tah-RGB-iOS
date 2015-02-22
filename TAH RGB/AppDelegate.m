@@ -15,7 +15,7 @@
 
     
     // Override point for customization after application launch.
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0], NSForegroundColorAttributeName,[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], NSFontAttributeName,nil]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0], NSForegroundColorAttributeName,[UIFont fontWithName:@"System-Bold" size:21.0], NSFontAttributeName,nil]];
     
     
     
@@ -36,7 +36,7 @@
             initialViewController = [iPhone35Storyboard instantiateInitialViewController];
         }
         
-        if (iOSDeviceScreenSize.height == 568)
+        if(iOSDeviceScreenSize.height == 568)
         {   // iPhone 5 and iPod Touch 5th generation: 4 inch screen (diagonally measured)
             
             // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone4
